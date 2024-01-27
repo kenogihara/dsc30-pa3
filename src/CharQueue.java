@@ -1,6 +1,6 @@
 /*
-    Name: TODO
-    PID:  TODO
+    Name: Ken Ogihara
+    PID:  A16969236
  */
 
 import java.util.NoSuchElementException;
@@ -8,8 +8,8 @@ import java.util.NoSuchElementException;
 /**
  * TODO
  *
- * @author TODO
- * @since TODO
+ * @author Ken Ogihara
+ * @since ${1/27/2024}
  */
 
 public class CharQueue {
@@ -20,11 +20,14 @@ public class CharQueue {
     private int rear;
 
     public CharQueue() {
-        // TODO
+        circularArray = new char[5];
     }
 
     public CharQueue(int capacity) {
-        // TODO
+        if (capacity < 1) {
+            throw new IllegalArgumentException("Capacity out of valid range");
+        }
+        circularArray = new char[capacity];
     }
 
     public boolean isEmpty() {
