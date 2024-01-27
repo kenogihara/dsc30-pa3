@@ -19,6 +19,8 @@ public class CharQueue {
     private int front;
     private int rear;
     public static final int DEFAULT_CAPACITY = 5;
+    public static final int DOUBLED_IN_SIZE = 2;
+
 
     public CharQueue() {
         circularArray = new char[DEFAULT_CAPACITY];
@@ -35,6 +37,10 @@ public class CharQueue {
         return length == 0;
     }
 
+    public boolean isFull() {
+        return !this.isEmpty() && rear == front;
+    }
+
     public int size() {
         return length;
     }
@@ -47,8 +53,15 @@ public class CharQueue {
     }
 
     public void enqueue(char elem) {
-        if (rear == front + circularArray.length) {
-
+        if (this.isFull()) {
+            char[] updatedArray = new char[circularArray.length * DOUBLED_IN_SIZE];
+            for (int i = 0; i < circularArray.length; i++) {
+                updatedArray[i] = circularArray[i];
+            }
+            rear++;
+            updatedArray[rear] = elem;
+            length++;
+            circularArray = updatedArray;
         }
         circularArray[rear] = elem;
         rear++;
