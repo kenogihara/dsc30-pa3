@@ -18,9 +18,10 @@ public class CharQueue {
     private int length;
     private int front;
     private int rear;
+    public static final int DEFAULT_CAPACITY = 5;
 
     public CharQueue() {
-        circularArray = new char[5];
+        circularArray = new char[DEFAULT_CAPACITY];
     }
 
     public CharQueue(int capacity) {
@@ -31,30 +32,43 @@ public class CharQueue {
     }
 
     public boolean isEmpty() {
-        // TODO
-        return false;
+        return length == 0;
     }
 
     public int size() {
-        // TODO
-        return 0;
+        return length;
     }
 
     public void clear() {
-        // TODO
+        circularArray = new char[circularArray.length];
+        length = 0;
+        front = 0;
+        rear = 0;
     }
 
     public void enqueue(char elem) {
-        // TODO
+        if (rear == front + circularArray.length) {
+
+        }
+        circularArray[rear] = elem;
+        rear++;
+        length++;
     }
 
     public char peek() {
-        // TODO
-        return 0;
+        if (this.isEmpty()) {
+            throw new NoSuchElementException();
+        }
+        return circularArray[front];
     }
 
     public char dequeue() {
-        // TODO
-        return 0;
+        if (this.isEmpty()) {
+            throw new NoSuchElementException();
+        }
+        char elem = circularArray[front];
+        front++;
+        length--;
+        return elem;
     }
 }
