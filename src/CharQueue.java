@@ -14,7 +14,7 @@ import java.util.NoSuchElementException;
 
 public class CharQueue {
     /* instance variables*/
-    private char[] circularArray;
+    public char[] circularArray;
     private int length;
     private int front;
     private int rear;
@@ -55,7 +55,7 @@ public class CharQueue {
      * @return a boolean.
      **/
     public boolean isFull() {
-        return !this.isEmpty() && rear == front;
+        return circularArray.length == length;
     }
 
     /**
