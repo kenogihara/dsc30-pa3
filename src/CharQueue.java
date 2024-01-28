@@ -86,9 +86,7 @@ public class CharQueue {
             for (int i = 0; i < circularArray.length; i++) {
                 updatedArray[i] = circularArray[i];
             }
-            rear++;
             updatedArray[rear] = elem;
-            length++;
             circularArray = updatedArray;
         }
         circularArray[rear] = elem;
