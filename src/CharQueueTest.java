@@ -17,14 +17,10 @@ class CharQueueTest {
     @org.junit.jupiter.api.Test
     void constructorOneTest() {
 
-
         CharQueue trafficManagement = new CharQueue();
         assertEquals(5, trafficManagement.circularArray.length);
         assertEquals(5, queue.circularArray.length);
-
         assertFalse(queue.circularArray.length > 5);
-
-
     }
 
     @org.junit.jupiter.api.Test
@@ -55,7 +51,7 @@ class CharQueueTest {
     void isFull() {
 
         char[] alphabet = new char[] {'a', 'b', 'c', 'd', 'e'};
-        for (int elem: alphabet) {
+        for (char elem: alphabet) {
             queue.enqueue((char) elem);
         }
         assertTrue(queue.isFull());
@@ -69,7 +65,7 @@ class CharQueueTest {
     void size() {
 
         char[] alphabet = new char[] {'f', 'g', 'h', 'i'};
-        for (int elem: alphabet) {
+        for (char elem: alphabet) {
             queue.enqueue((char) elem);
         }
 
