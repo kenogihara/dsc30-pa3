@@ -38,7 +38,7 @@ class ProteinSynthesis {
 
     /**
      * Method that transcribes DNA to RNA by replacing Thymine nucleotides with Uracil.
-     * @param dna a string of characters.
+     * @param rna a string of characters.
      * @return transcription which is an object of the CharQueue class.
      * @throws IllegalArgumentException if the length of the string is not divisible by 3.
      **/
