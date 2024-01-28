@@ -86,11 +86,12 @@ public class CharQueue {
             for (int i = 0; i < circularArray.length; i++) {
                 updatedArray[i] = circularArray[i];
             }
+            rear = rear + circularArray.length;
             updatedArray[rear] = elem;
             circularArray = updatedArray;
         }
         circularArray[rear] = elem;
-        rear++;
+        rear = (rear + 1) % circularArray.length;
         length++;
     }
 
@@ -116,7 +117,7 @@ public class CharQueue {
             throw new NoSuchElementException();
         }
         char elem = circularArray[front];
-        front++;
+        front = (front + 1) % circularArray.length;
         length--;
         return elem;
     }

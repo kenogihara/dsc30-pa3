@@ -1,11 +1,8 @@
 import static org.junit.jupiter.api.Assertions.*;
-import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
-
 import java.util.NoSuchElementException;
 
 class CharQueueTest {
-
 
     CharQueue queue;
     CharQueue line;
@@ -85,7 +82,6 @@ class CharQueueTest {
         assertEquals(0, queue.size());
 
         queue.enqueue('j');
-        System.out.println(queue.circularArray);
     }
 
     @org.junit.jupiter.api.Test
@@ -125,6 +121,7 @@ class CharQueueTest {
 
         queue.enqueue('a');
         assertEquals(20, queue.circularArray.length);
+
     }
 
     @org.junit.jupiter.api.Test
@@ -137,12 +134,11 @@ class CharQueueTest {
         queue.dequeue();
         assertThrows(NoSuchElementException.class, () -> queue.peek());
 
-        char[] alphabet = new char[] {'f', 'g', 'h', 'i', 'j'};
+        char[] alphabet = new char[] {'f', 'g', 'h', 'i', 'j', 'k'};
         for (int elem: alphabet) {
-            line.enqueue((char) elem);
+            queue.enqueue((char) elem);
         }
-
-        assertEquals('f', line.peek());
+        assertEquals('f', queue.peek());
 
     }
 
@@ -154,6 +150,22 @@ class CharQueueTest {
         for (int elem: alphabet) {
             line.enqueue((char) elem);
         }
+        assertEquals('f', line.dequeue());
+        assertEquals('g', line.dequeue());
+        assertEquals('h', line.dequeue());
+
+        char[] newAlphabet = new char[] {'a', 'n', 'd', 'r', 'e'};
+        for (int elem: newAlphabet) {
+            queue.enqueue((char) elem);
+        }
+        queue.enqueue('w');
+
+        assertEquals('a', queue.dequeue());
+        assertEquals(5, queue.size());
+        assertEquals('n', queue.dequeue());
+        assertEquals(4, queue.size());
+
     }
+
 
 }
