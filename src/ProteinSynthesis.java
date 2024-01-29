@@ -16,6 +16,7 @@ class ProteinSynthesis {
     /* Magic numbers */
 
     public static final int GROUP = 3;
+    public static final int CODON = 3;
 
     /**
      * Method that transcribes DNA to RNA by replacing Thymine nucleotides with Uracil.
@@ -41,11 +42,10 @@ class ProteinSynthesis {
     }
 
     /**
-     * Method that transcribes DNA to RNA by replacing Thymine nucleotides with Uracil.
+     * Method that translates a given RNA to a protein.
      *
-     * @param rna a string of characters.
-     * @return transcription which is an object of the CharQueue class.
-     * @throws IllegalArgumentException if the length of the string is not divisible by 3.
+     * @param rna an object of CharQueue.
+     * @return a queue that includes the RNA's corresponding amino acids.
      **/
     public CharQueue translateRNA(CharQueue rna) {
         CharQueue emptyQueue = new CharQueue();
@@ -61,17 +61,19 @@ class ProteinSynthesis {
         }
         if (augFound) {
             String codon = "";
-            CharQueue aminoAcidChain = new CharQueue(rna.size() / 3);
+            CharQueue aminoAcidChain = new CharQueue(rna.size() / CODON);
             for (int i = 0; i < rna.size(); i++) {
                 codon += rna.dequeue() + rna.dequeue() + rna.dequeue();
                 if (codon == "UAA" || codon == "UAG" || codon == "UGA") {
                     break;
-                }
-                else {
+                } else {
                     aminoAcidChain.enqueue(CodonMap.getAminoAcid(codon));
+                    codon = "";
                 }
             }
+            return aminoAcidChain;
+        } else {
+            return emptyQueue;
         }
-        return aminoAcidChain;
     }
 }
