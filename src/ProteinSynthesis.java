@@ -52,7 +52,8 @@ class ProteinSynthesis {
         if (rna.isEmpty()) {
             return emptyQueue;
         }
-        if (rna.peek() == 'A' && rna.circularArray[(rna.getFront() + 1) % rna.circularArray.length] == 'U' &&
+        if (rna.peek() == 'A' &&
+                rna.circularArray[(rna.getFront() + 1) % rna.circularArray.length] == 'U' &&
                 rna.circularArray[(rna.getFront() + 2) % rna.circularArray.length] == 'G') {
             String codon = "";
             CharQueue aminoAcidChain = new CharQueue(rna.size() / CODON);
