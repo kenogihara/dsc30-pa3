@@ -11,7 +11,7 @@ class ProteinSynthesisTest {
     @Test
     void transcribeDNA() {
         assertEquals("AAGAGAUGUCGGUUUGCUAGUUCACGUAAAGGU",
-                String.valueOf(genetics.transcribeDNA("AAGAGAUGUCGGUUUGCUAGUUCACGUAAAGGU").circularArray));
+                String.valueOf(genetics.transcribeDNA("AAGAGATGTCGGTTTGCTAGTTCACGTAAAGGT").circularArray));
 
         assertEquals("GCCUCGCGCCACCUCUAAGUAAGUGAGCCGUCGAGACAUUAUCCCUGAUUUUCUCACUACUAUUAGUACUCACGGCGCAAUACCACCACAGCCUUGUCU",
                 String.valueOf(genetics.transcribeDNA("GCCTCGCGCCACCTCTAAGTAAGTGAGCCGTCGAGACATTATCCCTGATTTTCTCACTACTATTAGTACTCACGGCGCAATACCACCACAGCCTTGTCT").circularArray));
