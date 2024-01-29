@@ -52,14 +52,12 @@ class ProteinSynthesis {
         if (rna.isEmpty()) {
             return emptyQueue;
         }
-        if (rna.size() < CODON) {
-            return emptyQueue;
-        }
         if (rna.peek() == 'A' && rna.circularArray[(rna.getFront() + 1) % rna.circularArray.length] == 'U' &&
                 rna.circularArray[(rna.getFront() + 2) % rna.circularArray.length] == 'G') {
             String codon = "";
             CharQueue aminoAcidChain = new CharQueue(rna.size() / CODON);
-            for (int i = 0; i < rna.size(); i++) {
+            int groups = rna.size() / CODON;
+            for (int i = 0; i < groups; i++) {
                 codon += rna.dequeue() + "" + rna.dequeue() + "" + rna.dequeue();
                 if (codon.equals("UAA") || codon.equals("UAG") || codon.equals("UGA")) {
                     break;
@@ -70,6 +68,8 @@ class ProteinSynthesis {
             }
             return aminoAcidChain;
         } else {
+            rna.dequeue();
+            rna.dequeue();
             rna.dequeue();
             return translateRNA(rna);
         }
