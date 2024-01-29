@@ -59,6 +59,14 @@ public class CharQueue {
     }
 
     /**
+     * Getter method that returns front index.
+     * @return an integer.
+     **/
+    public int getFront() {
+        return front;
+    }
+
+    /**
      * Method that returns the size of the queue.
      * @return an integer.
      **/

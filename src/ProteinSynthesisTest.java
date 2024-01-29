@@ -24,7 +24,7 @@ class ProteinSynthesisTest {
     @Test
     void translateRNA() {
 
-        System.out.println(String.valueOf(genetics.translateRNA(genetics.transcribeDNA("GAATGCCGGTCAGCA")).circularArray));
+        System.out.println(String.valueOf(genetics.translateRNA(genetics.transcribeDNA("ATGCCGGTCAGC")).circularArray));
 
     }
 }

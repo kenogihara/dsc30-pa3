@@ -49,31 +49,29 @@ class ProteinSynthesis {
      **/
     public CharQueue translateRNA(CharQueue rna) {
         CharQueue emptyQueue = new CharQueue();
-        boolean augFound;
         if (rna.isEmpty()) {
             return emptyQueue;
         }
-        if (rna.peek() == 'A' && rna.circularArray[1] == 'T' && rna.circularArray[2] == 'G') {
-            augFound = true;
-        } else {
-            rna.dequeue();
-            return translateRNA(rna);
+        if (rna.size() < CODON) {
+            return emptyQueue;
         }
-        if (augFound) {
+        if (rna.peek() == 'A' && rna.circularArray[(rna.getFront() + 1) % rna.circularArray.length] == 'U' &&
+                rna.circularArray[(rna.getFront() + 2) % rna.circularArray.length] == 'G') {
             String codon = "";
             CharQueue aminoAcidChain = new CharQueue(rna.size() / CODON);
             for (int i = 0; i < rna.size(); i++) {
-                codon += rna.dequeue() + rna.dequeue() + rna.dequeue();
-                if (codon == "UAA" || codon == "UAG" || codon == "UGA") {
+                codon += rna.dequeue() + "" + rna.dequeue() + "" + rna.dequeue();
+                if (codon.equals("UAA") || codon.equals("UAG") || codon.equals("UGA")) {
                     break;
                 } else {
                     aminoAcidChain.enqueue(CodonMap.getAminoAcid(codon));
-                    codon = "";
                 }
+                codon = "";
             }
             return aminoAcidChain;
         } else {
-            return emptyQueue;
+            rna.dequeue();
+            return translateRNA(rna);
         }
     }
 }
