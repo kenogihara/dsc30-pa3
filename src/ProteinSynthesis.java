@@ -61,8 +61,17 @@ class ProteinSynthesis {
         }
         if (augFound) {
             String codon = "";
-            codon += rna.dequeue() + rna.dequeue() + rna.dequeue();
-
+            CharQueue aminoAcidChain = new CharQueue(rna.size() / 3);
+            for (int i = 0; i < rna.size(); i++) {
+                codon += rna.dequeue() + rna.dequeue() + rna.dequeue();
+                if (codon == "UAA" || codon == "UAG" || codon == "UGA") {
+                    break;
+                }
+                else {
+                    aminoAcidChain.enqueue(CodonMap.getAminoAcid(codon));
+                }
+            }
         }
+        return aminoAcidChain;
     }
 }
