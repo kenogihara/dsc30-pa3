@@ -3,6 +3,8 @@
     PID:  A16969236
  */
 
+import java.util.Arrays;
+
 /**
  * Protein Synthesis Class Implementation.
  *
@@ -17,6 +19,7 @@ class ProteinSynthesis {
 
     /**
      * Method that transcribes DNA to RNA by replacing Thymine nucleotides with Uracil.
+     *
      * @param dna a string of characters.
      * @return transcription which is an object of the CharQueue class.
      * @throws IllegalArgumentException if the length of the string is not divisible by 3.
@@ -27,23 +30,39 @@ class ProteinSynthesis {
         }
         CharQueue transcription = new CharQueue(dna.length());
 
-        for (char nucleotide: dna.toCharArray()) {
+        for (char nucleotide : dna.toCharArray()) {
             if (nucleotide == 'T') {
                 transcription.enqueue('U');
             } else {
                 transcription.enqueue(nucleotide);
             }
-        } return transcription;
+        }
+        return transcription;
     }
 
     /**
      * Method that transcribes DNA to RNA by replacing Thymine nucleotides with Uracil.
+     *
      * @param rna a string of characters.
      * @return transcription which is an object of the CharQueue class.
      * @throws IllegalArgumentException if the length of the string is not divisible by 3.
      **/
     public CharQueue translateRNA(CharQueue rna) {
-        return null;
-    }
+        CharQueue emptyQueue = new CharQueue();
+        boolean augFound;
+        if (rna.isEmpty()) {
+            return emptyQueue;
+        }
+        if (rna.peek() == 'A' && rna.circularArray[1] == 'U' && rna.circularArray[2] == 'G') {
+            augFound = true;
+        } else {
+            rna.dequeue();
+            return translateRNA(rna);
+        }
+        if (augFound) {
+            String codon = "";
+            codon += rna.dequeue() + rna.dequeue() + rna.dequeue();
 
+        }
+    }
 }
