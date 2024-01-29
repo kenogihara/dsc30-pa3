@@ -77,7 +77,6 @@ class CharQueueTest {
         queue.dequeue();
         assertEquals(0, queue.size());
 
-        queue.enqueue('j');
     }
 
     @org.junit.jupiter.api.Test
