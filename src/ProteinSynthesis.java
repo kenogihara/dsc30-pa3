@@ -53,7 +53,7 @@ class ProteinSynthesis {
         if (rna.isEmpty()) {
             return emptyQueue;
         }
-        if (rna.peek() == 'A' && rna.circularArray[1] == 'U' && rna.circularArray[2] == 'G') {
+        if (rna.peek() == 'A' && rna.circularArray[1] == 'T' && rna.circularArray[2] == 'G') {
             augFound = true;
         } else {
             rna.dequeue();
