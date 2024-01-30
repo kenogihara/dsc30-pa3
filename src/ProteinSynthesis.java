@@ -70,7 +70,7 @@ class ProteinSynthesis {
             return aminoAcidChain;
         } else {
             rna.dequeue();
-            // We dequeue 3 times assuming that the sequence is counted in 3's.
+            // we remove 3 elements because we count the dna sequence in 3's.
             rna.dequeue();
             rna.dequeue();
             return translateRNA(rna);

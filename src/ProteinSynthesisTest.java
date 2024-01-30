@@ -27,5 +27,6 @@ class ProteinSynthesisTest {
         assertEquals("MS", String.valueOf(genetics.translateRNA(genetics.transcribeDNA("AGGATGTCT")).circularArray));
         assertEquals("M\u0000\u0000", String.valueOf(genetics.translateRNA(genetics.transcribeDNA("ACAGAGATGTAATAC")).circularArray));
         assertEquals("MELPY", String.valueOf(genetics.translateRNA(genetics.transcribeDNA("ATGGAGTTGCCGTAC")).circularArray));
+        assertTrue(genetics.translateRNA(genetics.transcribeDNA("GAATGCCGGTCAGCA")).isEmpty());
     }
 }
