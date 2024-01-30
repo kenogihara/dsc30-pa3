@@ -61,7 +61,7 @@ class ProteinSynthesis {
             for (int i = 0; i < groups; i++) {
                 codon += rna.dequeue() + "" + rna.dequeue() + "" + rna.dequeue();
                 if (codon.equals("UAA") || codon.equals("UAG") || codon.equals("UGA")) {
-                    break;
+                    return aminoAcidChain;
                 } else {
                     aminoAcidChain.enqueue(CodonMap.getAminoAcid(codon));
                 }
@@ -70,6 +70,7 @@ class ProteinSynthesis {
             return aminoAcidChain;
         } else {
             rna.dequeue();
+            // We dequeue 3 times assuming that the sequence is counted in 3's.
             rna.dequeue();
             rna.dequeue();
             return translateRNA(rna);
