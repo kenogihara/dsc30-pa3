@@ -158,8 +158,5 @@ class CharQueueTest {
         assertEquals(5, queue.size());
         assertEquals('n', queue.dequeue());
         assertEquals(4, queue.size());
-
     }
-
-
 }

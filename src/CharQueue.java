@@ -140,21 +140,18 @@ public class CharQueue {
 
 
     /**
-     * Method that removes and returns the first element in the queue.
+     * Method that converts array to its string representation.
      *
-     * @return a single character.
-     * @throws NoSuchElementException if the queue is empty.
+     * @return a string.
      **/
     public String toString() {
         StringBuilder output = new StringBuilder();
         for (int i = 0; i < circularArray.length; i++) {
-            int index = (front + i) % circularArray.length;
-            char elem = circularArray[index];
+            char elem = circularArray[(front + i) % circularArray.length];
             if (elem != '\0') {
                 output.append(elem);
             }
         }
         return output.toString();
     }
-
 }

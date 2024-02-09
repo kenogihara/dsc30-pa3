@@ -25,6 +25,9 @@ class ProteinSynthesis {
      * @throws IllegalArgumentException if the length of the string is not divisible by 3.
      **/
     public CharQueue transcribeDNA(String dna) {
+        if (dna.isEmpty()) {
+            return new CharQueue();
+        }
         if (dna.length() % GROUP != 0) {
             throw new IllegalArgumentException("Not divisible by 3");
         }
