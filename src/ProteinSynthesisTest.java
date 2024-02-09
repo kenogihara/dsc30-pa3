@@ -17,7 +17,9 @@ class ProteinSynthesisTest {
                 String.valueOf(genetics.transcribeDNA("GCCTCGCGCCACCTCTAAGTAAGTGAGCCGTCGAGACATTATCCCTGATTTTCTCACTACTATTAGTACTCACGGCGCAATACCACCACAGCCTTGTCT").circularArray));
 
         assertThrows(IllegalArgumentException.class, () -> genetics.transcribeDNA("CGCCA"));
+        assertThrows(IllegalArgumentException.class, () -> genetics.transcribeDNA("TACAT"));
 
+        assertEquals("", String.valueOf(genetics.transcribeDNA("").circularArray));
         assertFalse(String.valueOf(genetics.transcribeDNA("GAATGCCGGTCAGCA").circularArray).contains("T"));
     }
 
@@ -25,8 +27,16 @@ class ProteinSynthesisTest {
     void translateRNA() {
         assertEquals("MYS", String.valueOf(genetics.translateRNA(genetics.transcribeDNA("ATGTATTCT")).circularArray));
         assertEquals("MS", String.valueOf(genetics.translateRNA(genetics.transcribeDNA("AGGATGTCT")).circularArray));
-        assertEquals("M\u0000\u0000", String.valueOf(genetics.translateRNA(genetics.transcribeDNA("ACAGAGATGTAATAC")).circularArray));
+        assertEquals("M*", String.valueOf(genetics.translateRNA(genetics.transcribeDNA("ACAGAGATGTAATAC")).circularArray));
         assertEquals("MELPY", String.valueOf(genetics.translateRNA(genetics.transcribeDNA("ATGGAGTTGCCGTAC")).circularArray));
         assertTrue(genetics.translateRNA(genetics.transcribeDNA("GAATGCCGGTCAGCA")).isEmpty());
+
+
+        assertEquals("MIS*", String.valueOf(genetics.translateRNA(genetics.transcribeDNA("ATGATCTCGTAA")).circularArray));
+        assertEquals("", String.valueOf(genetics.translateRNA(genetics.transcribeDNA("CCCCTGTCATAA")).circularArray));
+        assertEquals("MLC", String.valueOf(genetics.translateRNA(genetics.transcribeDNA("ATGCTATGT")).circularArray));
+
+
+
     }
 }

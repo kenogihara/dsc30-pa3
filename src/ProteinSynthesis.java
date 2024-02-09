@@ -16,7 +16,6 @@ class ProteinSynthesis {
     /* Magic numbers */
 
     public static final int GROUP = 3;
-    public static final int CODON = 3;
 
     /**
      * Method that transcribes DNA to RNA by replacing Thymine nucleotides with Uracil.
@@ -49,31 +48,27 @@ class ProteinSynthesis {
      **/
     public CharQueue translateRNA(CharQueue rna) {
         CharQueue emptyQueue = new CharQueue();
+        boolean startTranscription = false;
         if (rna.isEmpty()) {
             return emptyQueue;
         }
-        if (rna.peek() == 'A' &&
-                rna.circularArray[(rna.getFront() + 1) % rna.circularArray.length] == 'U' &&
-                rna.circularArray[(rna.getFront() + 2) % rna.circularArray.length] == 'G') {
-            String codon = "";
-            CharQueue aminoAcidChain = new CharQueue(rna.size() / CODON);
-            int groups = rna.size() / CODON;
-            for (int i = 0; i < groups; i++) {
-                codon += rna.dequeue() + "" + rna.dequeue() + "" + rna.dequeue();
+        String codon;
+        CharQueue aminoAcidChain = new CharQueue();
+        int group = rna.size() / GROUP;
+        for (int i = 0; i < group; i++) {
+            codon = String.format("%s%s%s", rna.dequeue(), rna.dequeue(), rna.dequeue());
+            if (codon.equals("AUG")) {
+                startTranscription = true;
+            }
+            if (startTranscription) {
                 if (codon.equals("UAA") || codon.equals("UAG") || codon.equals("UGA")) {
-                    return aminoAcidChain;
+                    aminoAcidChain.enqueue(CodonMap.getAminoAcid(codon));
+                    break;
                 } else {
                     aminoAcidChain.enqueue(CodonMap.getAminoAcid(codon));
                 }
-                codon = "";
             }
-            return aminoAcidChain;
-        } else {
-            rna.dequeue();
-            // we remove 3 elements because we count the dna sequence in 3's.
-            rna.dequeue();
-            rna.dequeue();
-            return translateRNA(rna);
+        }
+        return aminoAcidChain;
         }
     }
-}
