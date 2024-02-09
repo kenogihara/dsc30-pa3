@@ -8,6 +8,7 @@ class ProteinSynthesisTest {
     void setUp() {
         genetics = new ProteinSynthesis();
     }
+
     @Test
     void transcribeDNA() {
         assertEquals("AAGAGAUGUCGGUUUGCUAGUUCACGUAAAGGU",
@@ -19,24 +20,21 @@ class ProteinSynthesisTest {
         assertThrows(IllegalArgumentException.class, () -> genetics.transcribeDNA("CGCCA"));
         assertThrows(IllegalArgumentException.class, () -> genetics.transcribeDNA("TACAT"));
 
-        assertEquals("", String.valueOf(genetics.transcribeDNA("").circularArray));
+        assertEquals("", genetics.transcribeDNA("").toString());
         assertFalse(String.valueOf(genetics.transcribeDNA("GAATGCCGGTCAGCA").circularArray).contains("T"));
     }
 
+
+
     @Test
     void translateRNA() {
-        assertEquals("MYS", String.valueOf(genetics.translateRNA(genetics.transcribeDNA("ATGTATTCT")).circularArray));
-        assertEquals("MS", String.valueOf(genetics.translateRNA(genetics.transcribeDNA("AGGATGTCT")).circularArray));
-        assertEquals("M*", String.valueOf(genetics.translateRNA(genetics.transcribeDNA("ACAGAGATGTAATAC")).circularArray));
-        assertEquals("MELPY", String.valueOf(genetics.translateRNA(genetics.transcribeDNA("ATGGAGTTGCCGTAC")).circularArray));
+        assertEquals("MIS*", genetics.translateRNA(genetics.transcribeDNA("ATGATCTCGTAA")).toString());
+        assertEquals("MYS", genetics.translateRNA(genetics.transcribeDNA("ATGTATTCT")).toString());
+        assertEquals("MS", genetics.translateRNA(genetics.transcribeDNA("AGGATGTCT")).toString());
+        assertEquals("M*", genetics.translateRNA(genetics.transcribeDNA("ACAGAGATGTAATAC")).toString());
+        assertEquals("MELPY",genetics.translateRNA(genetics.transcribeDNA("ATGGAGTTGCCGTAC")).toString());
         assertTrue(genetics.translateRNA(genetics.transcribeDNA("GAATGCCGGTCAGCA")).isEmpty());
-
-
-        assertEquals("MIS*", String.valueOf(genetics.translateRNA(genetics.transcribeDNA("ATGATCTCGTAA")).circularArray));
-        assertEquals("", String.valueOf(genetics.translateRNA(genetics.transcribeDNA("CCCCTGTCATAA")).circularArray));
-        assertEquals("MLC", String.valueOf(genetics.translateRNA(genetics.transcribeDNA("ATGCTATGT")).circularArray));
-
-
-
+        assertEquals("", genetics.translateRNA(genetics.transcribeDNA("CCCCTGTCATAA")).toString());
+        assertEquals("MLC", genetics.translateRNA(genetics.transcribeDNA("ATGCTATGT")).toString());
     }
 }

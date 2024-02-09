@@ -29,7 +29,6 @@ class ProteinSynthesis {
             throw new IllegalArgumentException("Not divisible by 3");
         }
         CharQueue transcription = new CharQueue(dna.length());
-
         for (char nucleotide : dna.toCharArray()) {
             if (nucleotide == 'T') {
                 transcription.enqueue('U');
@@ -47,11 +46,7 @@ class ProteinSynthesis {
      * @return a queue that includes the RNA's corresponding amino acids.
      **/
     public CharQueue translateRNA(CharQueue rna) {
-        CharQueue emptyQueue = new CharQueue();
         boolean startTranscription = false;
-        if (rna.isEmpty()) {
-            return emptyQueue;
-        }
         String codon;
         CharQueue aminoAcidChain = new CharQueue();
         int group = rna.size() / GROUP;

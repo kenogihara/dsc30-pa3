@@ -32,6 +32,7 @@ public class CharQueue {
 
     /**
      * Constructor that creates a queue with a given capacity.
+     *
      * @param capacity an integer.
      * @throws IllegalArgumentException if capacity is less than 1.
      **/
@@ -44,6 +45,7 @@ public class CharQueue {
 
     /**
      * Method that checks if the queue is empty.
+     *
      * @return a boolean.
      **/
     public boolean isEmpty() {
@@ -52,6 +54,7 @@ public class CharQueue {
 
     /**
      * Method that checks if the queue is full.
+     *
      * @return a boolean.
      **/
     public boolean isFull() {
@@ -60,6 +63,7 @@ public class CharQueue {
 
     /**
      * Getter method that returns front index.
+     *
      * @return an integer.
      **/
     public int getFront() {
@@ -68,6 +72,7 @@ public class CharQueue {
 
     /**
      * Method that returns the size of the queue.
+     *
      * @return an integer.
      **/
     public int size() {
@@ -86,6 +91,7 @@ public class CharQueue {
 
     /**
      * Method that enqueues an element into the queue.
+     *
      * @param elem a single character.
      **/
     public void enqueue(char elem) {
@@ -105,8 +111,9 @@ public class CharQueue {
 
     /**
      * Method that returns the first element in the queue.
-     * @throws NoSuchElementException if the queue is empty.
+     *
      * @return a single character.
+     * @throws NoSuchElementException if the queue is empty.
      **/
     public char peek() {
         if (this.isEmpty()) {
@@ -117,6 +124,7 @@ public class CharQueue {
 
     /**
      * Method that removes and returns the first element in the queue.
+     *
      * @return a single character.
      * @throws NoSuchElementException if the queue is empty.
      **/
@@ -129,4 +137,24 @@ public class CharQueue {
         length--;
         return elem;
     }
+
+
+    /**
+     * Method that removes and returns the first element in the queue.
+     *
+     * @return a single character.
+     * @throws NoSuchElementException if the queue is empty.
+     **/
+    public String toString() {
+        StringBuilder output = new StringBuilder();
+        for (int i = 0; i < circularArray.length; i++) {
+            int index = (front + i) % circularArray.length;
+            char elem = circularArray[index];
+            if (elem != '\0') {
+                output.append(elem);
+            }
+        }
+        return output.toString();
+    }
+
 }

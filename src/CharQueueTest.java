@@ -68,7 +68,6 @@ class CharQueueTest {
         for (char elem: alphabet) {
             queue.enqueue((char) elem);
         }
-
         assertEquals(4, queue.size());
         queue.dequeue();
         assertEquals(3, queue.size());
